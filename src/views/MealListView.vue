@@ -163,12 +163,6 @@ components: {
 
 
 <style>
-
-/* .mealListView {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  } */
 .meal-name{
     font-family: 'B612 Mono', monospace;
 }
