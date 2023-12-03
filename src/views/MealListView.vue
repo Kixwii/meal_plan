@@ -29,12 +29,16 @@
                     <p>{{ meal.Directions }}</p>
                 </div>
             </template>
+
+            <div>
+
+            </div>
         </MealComponent>
     </div>
 
     <div> 
         <form @submit.prevent="addMeal">
-            <label for="mealName"> Movie Name:</label>
+            <label for="mealName"> Meal Name:</label>
             <input type="text" id="mealName" v-model="newMeal.name">
 
             <label for="mealCalories">Calories:</label>
@@ -62,9 +66,11 @@
 <script>
 
 import MealComponent from '../components/icons/MealComponent.vue';
+import { useMealStore } from '../stores/mealStore';
 
 
 export default{
+
 components: {
         MealComponent 
     },
@@ -121,15 +127,15 @@ components: {
         },
         addNewMeal(){
             if(!this.formIncomplete) {
-            this.meals.push({
-                name:this.newMeal.name,
+            const newMeal = {name:this.newMeal.name,
                 calories: this.newMeal.calories,
                 duration_hour: this.newMeal.duration_hour,
                 duration_minute: this.newMeal.duration_minute,
-                Directions: this.newMeal.Directions
-            })
+                Directions: this.newMeal.Directions} 
+            
+            this.meals.push(newMeal);
+            this.addMealToStore(newMeal);
         }
-
             this.resetForm();
         },
         resetForm(){
@@ -141,6 +147,11 @@ components: {
                 Directions: ''
             }
             this.formIncomplete = true;
+        },
+
+        addMealToStore(meal) {
+            const mealStore = useMealStore();
+            mealStore.addMeal(meal);
         }
     },
     watch: {
@@ -183,14 +194,15 @@ input{
 button{
     margin-top: 10px;
     border: none;
-    color: blue;
-    background-color: white;
+    color: green;
+    background-color: lightgrey;
     height: 25px;
     font-weight: bold;
     margin-bottom: 10px;
+    border-radius: 10px;
 }
 form{
-    background-color: black;
+    background-color: white;
     display: flex;
     flex-direction: column;
     justify-content: center;

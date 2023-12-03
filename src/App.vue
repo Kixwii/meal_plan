@@ -19,55 +19,56 @@ import { RouterLink, RouterView } from 'vue-router'
   <RouterView />
 </template>
 
+
+
 <style scoped>
-header {
+/* header {
   line-height: 1.5;
   max-height: 100vh;
-}
+} */
 
 nav {
+  position: relative;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 100%;
   font-size: 12px;
   text-align: center;
   margin-top: 2rem;
+  font-family: 'Inconsolata',monospace;
+  
+}
+@media screen {
+  nav {
+  position: relative;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  font-size: 12px;
+  text-align: center;
+  margin-top: 2rem;
+  font-family: 'Inconsolata',monospace;
+  
+}
 }
 
 nav a {
   display: inline-block;
   padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
+  color:black
 }
 
-
-@media (min-width: 1024px) {
-  header {
-    position: fixed;
-    top:0;
-    left: 0;
-    width: 100%;
-    padding: 10px;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}
 .app-title{
+  position: relative;
+  top: 0;
+  left: 0;
   margin: 0;
   padding: 10px;
   font-size: 24px;
   font-weight: bold;
-  color: black;
+  color: red;
 }
 
 </style>
