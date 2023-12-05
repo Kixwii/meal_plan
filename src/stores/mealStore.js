@@ -1,21 +1,16 @@
 import { defineStore } from 'pinia';
+import {onSnapshot, collection, addDoc} from 'firebase/firestore'
+import db from '../Firebase/init.js'
 
 
 export const useMealStore = defineStore('mealStore', {
     state:() => ({
-        meals: [
-            {
-                name: 'Pulled Buffalo Chicken',
-                calories: 1290,
-                duration_hour: 0,
-                duration_minute: 30,
-                Directions: 'Add the chicken and 1 cup (8-oz.) buffalo sauce to the Crockpot. Toss to combine. Cook on low for 6-8 hours or high for 3-4 hours. Remove the chicken breasts from the Crockpot and use two forks to shred the meat. Discard the remaining liquid from the Crockpot then add the meat back and toss with the remaining 1/2 cup (4-oz.) of buffalo sauce. '
-            },
-        ],
+        meals: [],
         addedCalories: 0,
     }),
     getters: {
         totalCalories(state){
+            // this.retrieveMeals()
             return state.meals.reduce((total, meal) => total + meal.calories, 0);
         },
         getAllMeals(state){
@@ -26,8 +21,14 @@ export const useMealStore = defineStore('mealStore', {
         }
     },
     actions: {
-        addMeal(meal){
-            this.meals.push(meal);
+        addMeal(meal) {
+            addDoc(collection(db, 'meals'), {
+                name:meal.name,
+                calories:meal.calories,
+                duration_hour:meal.duration_hour,
+                duration_minute:meal.duration_minute,
+                directions:meal.directions,
+            })
         },
         resetMeals(){
             this.meals = [];
@@ -35,6 +36,23 @@ export const useMealStore = defineStore('mealStore', {
         //handles calories addition to the home display
         addToTotal(calories){
             this.addedCalories += calories;
+        },
+        retrieveMeals(){
+            onSnapshot(collection(db, 'meals'), (querySnapshot)=>{
+                const mealsArr = []
+                querySnapshot.forEach((doc) => {
+                  const meal={
+                    id:doc.id,
+                    name:doc.data().name,
+                    calories:doc.data().calories,
+                    duration_hour:doc.data().duration_hour,
+                    duration_minute:doc.data().duration_minute,
+                    directions:doc.data().directions,
+                  }
+                  mealsArr.push(meal)
+                })
+                this.meals = mealsArr
+            })
         }
     },
 });
