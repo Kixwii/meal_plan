@@ -12,7 +12,7 @@
     </form>
     <p>
       If you are already registered,
-      <span @click="gotoLogin"><b>Login </b></span>
+      <span @click="gotoLogin"><b class="login-text">Login </b></span>
     </p>
   </div>
 </template>
@@ -99,5 +99,8 @@ div {
 
 span {
   text-decoration: underline;
+}
+.login-text{
+  color: red;
 }
 </style>

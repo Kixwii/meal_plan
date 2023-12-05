@@ -18,12 +18,12 @@
             </template>
             <template #mealCalories>
                 <div class="meal-calories">
-                    <p>{{ meal.calories}}</p>
+                    <p>{{ meal.calories}} Calories</p>
                 </div>
             </template>
             <template #mealPrepDuration>
                 <div class="meal-duration">
-                    <p>{{ meal.duration_hour }}, {{ meal.duration_minute }}</p>
+                    <p>{{ formatDuration(meal.duration_hour ,  meal.duration_minute) }}</p>
                 </div>
             </template>
             <template #mealDirections>
@@ -170,13 +170,12 @@ input{
     margin-bottom: 10px;
 }
 button{
-    margin-top: 10px;
+    margin: 10px;
     border: none;
     color: green;
     background-color: lightgrey;
     height: 25px;
     font-weight: bold;
-    margin-bottom: 10px;
     border-radius: 10px;
 }
 form{

@@ -10,7 +10,7 @@
         </form>
         <p>
             If you don't have an account, please
-            <span @click="gotoSignup"> <b>Sign up </b> </span>
+            <span @click="gotoSignup"> <b class="sign-up">Sign up </b> </span>
         </p>
     </div>
 </template>
@@ -89,6 +89,9 @@ div {
 
 span {
     text-decoration: underline;
+}
+.sign-up{
+    color: red;
 }
 </style>
   
