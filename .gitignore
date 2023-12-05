@@ -1,0 +1,5 @@
+# Ignore compiled files and build directories
+node_modules/
+
+# Ignore firebase configs
+Firebase/
