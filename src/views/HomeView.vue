@@ -65,16 +65,18 @@ export default{
 }
 
 .calories-card h1{
+  font-family: 'Pixelify Sans', sans-serif;
   font-weight: bold;
+  font-size: 50px;
   justify-content: center;
   align-items: center;
-  transform: translateX(50%);
+  transform: translateX(20%);
   margin: 0;
   text-align: center;
 }
 .calories-input{
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
   color: black;
   background-color: lightgrey;
   height: 20px;
