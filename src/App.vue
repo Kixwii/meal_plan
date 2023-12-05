@@ -1,6 +1,9 @@
 <script>
 import { RouterLink, RouterView } from 'vue-router'
 import LoginView from './views/LoginView.vue';
+import {auth} from './Firebase/init.js'
+import { signOut } from "firebase/auth"
+
 export default{
   components:{
     LoginView,
@@ -20,6 +23,13 @@ export default{
       else{
         this.isLoggedIn = false
       }
+    },
+    signOut(){
+      signOut(auth).then(() =>{
+        console.log('Logging out');
+        this.$emit('isLoggedIn', false);
+        this.router.push({name:'login'});
+      });
     }
   }
 }
@@ -36,6 +46,9 @@ export default{
         <RouterLink to="/about">About</RouterLink>
         <RouterLink to="/meal-list">Meal-List</RouterLink>
       </nav>
+    </div>
+    <div> 
+      <button @click="signOut">log out</button>
     </div>
   </header>
 
