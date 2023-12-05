@@ -39,6 +39,7 @@ nav {
   font-family: 'Inconsolata',monospace;
   
 }
+
 @media screen {
   nav {
   position: relative;
@@ -50,14 +51,28 @@ nav {
   text-align: center;
   margin-top: 2rem;
   font-family: 'Inconsolata',monospace;
+  }
+  .app-title{
+  position: relative;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  color: red;
+}
   
 }
-}
+
 
 nav a {
   display: inline-block;
   padding: 0 1rem;
   color:black
+}
+nav a:hover{
+  color:rgb(164, 64, 44);
 }
 
 .app-title{

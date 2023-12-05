@@ -5,17 +5,18 @@
        <div><slot name="mealPrepDuration"></slot></div>
        <div><slot name="mealDirections"></slot></div>
        <div> 
-        <button @click="addCaloriesToTotal">Add Calories</button>
+        <button @click="addCalories">Add Calories</button>
        </div>
     </div>
   </template>
   
   <script>
   export default {
-
+    props:['calories'],
     methods: {
-        addCaloriesToTotal(){
-            this.$emit('add-calories', this.calories);
+        addCalories(){
+            //Emitting an event with the calories to the parent component
+            this.$emit('addCalories', this.calories);
         },
     },
   

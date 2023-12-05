@@ -4,19 +4,44 @@
     <div class="calories-card"> 
       <h1> {{ totalCalories }}</h1>
     </div>
-  <div> </div>
+  <div> 
+    <label for="caloriesInput">Add them yourself!! : </label>
+    <input class type="number" id="caloriesInput" v-model="addedCalories"/>
+      <button @click="addCalories">Add Calories</button>
+    </div>
   </div>
+  
 </template>
 
 <script>
 
 import { useMealStore } from '../stores/mealStore';
-// import { computed } from 'vue';
+import { mapState } from 'pinia';
 export default{
+  data(){
+    return{
+      addedCalories: 0,
+    }
+  },
   computed: {
-    totalCalories(){
-      const mealStore = useMealStore();
-      return mealStore.totalCalories;
+    ...mapState(useMealStore, ['totalCalories', 'addToTotal']),
+    // totalCaloriesDisplayed(){
+    //   const mealStore = useMealStore();
+    //   return mealStore.totalCalories;
+    // },
+  },
+  methods: {
+    addToTotalCalories(calories){
+      this.totalCalories += calories;
+    },
+
+    addCalories(){
+      const parsedCalories = parseInt(this.addedCalories);
+      if(!isNaN(parsedCalories)) {
+        //Add the new calories to the store
+        this.addToTotal(parsedCalories);
+        this.addedCalories = 0; // Resetting the input after adding the calories
+      }
     }
   }
 }
@@ -38,10 +63,10 @@ export default{
 }
 
 .calories-card h1{
- font-weight: bold;
- justify-content: center;
- align-items: center;
- margin: 0;
- text-align: center;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  text-align: center;
 }
 </style>

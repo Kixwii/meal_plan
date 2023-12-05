@@ -1,13 +1,14 @@
 <template>
     <div class="mealListView">
         <h1> Your Meal List </h1>
-    <div class="meal-card" v-for="meal in meals" :key="meal">
+    <div class="meal-card" v-for="meal in getAllMeals" :key="meal">
         <MealComponent 
         :name="meal.name" 
         :calories="meal.calories" 
         :duration_hour="meal.duration_hour" 
         :duration_minute="meal.duration_minute" 
-        :Directions="meal.Directions">
+        :Directions="meal.Directions"
+        @addCalories="addToTotalCalories">
 
             <template #mealName>
                 <div class="meal-name">
@@ -19,7 +20,7 @@
                     <p>{{ meal.calories}}</p>
                 </div>
             </template>
-            <template #mealDuration>
+            <template #mealPrepDuration>
                 <div class="meal-duration">
                     <p>{{ meal.duration_hour }}, {{ meal.duration_minute }}</p>
                 </div>
@@ -29,15 +30,11 @@
                     <p>{{ meal.Directions }}</p>
                 </div>
             </template>
-
-            <div>
-
-            </div>
         </MealComponent>
     </div>
 
     <div> 
-        <form @submit.prevent="addMeal">
+        <form @submit.prevent="addNewMeal">
             <label for="mealName"> Meal Name:</label>
             <input type="text" id="mealName" v-model="newMeal.name">
 
@@ -54,7 +51,7 @@
             <label for="mealDirections">Prep-Directions: </label>
             <textarea id="mealDirections" v-model="newMeal.Directions"></textarea>
 
-            <button @click="addNewMeal" :disabled="formIncomplete">Add New Meal</button>
+            <button @click="addNewMeal" :disabled="formIncomplete" type="submit">Add New Meal</button>
 
             <h5 v-if="formIncomplete">Missing Info!</h5>
         </form>
@@ -67,7 +64,7 @@
 
 import MealComponent from '../components/icons/MealComponent.vue';
 import { useMealStore } from '../stores/mealStore';
-
+import { mapActions, mapState} from 'pinia';
 
 export default{
 
@@ -76,31 +73,7 @@ components: {
     },
     data() {
         return{
-            meals: [
-                {
-                    name: 'Pulled Buffalo Chicken',
-                    calories: 1290,
-                    duration_hour: 0,
-                    duration_minute: 30,
-                    Directions: 'Add the chicken and 1 cup (8-oz.) buffalo sauce to the Crockpot. Toss to combine. Cook on low for 6-8 hours or high for 3-4 hours. Remove the chicken breasts from the Crockpot and use two forks to shred the meat. Discard the remaining liquid from the Crockpot then add the meat back and toss with the remaining 1/2 cup (4-oz.) of buffalo sauce. '
-                },
-                {
-                    name: 'Pulled Buffalo Chicken',
-                    calories: 1290,
-                    duration_hour: 0,
-                    duration_minute: 34,
-                    Directions: 'Add the chicken and 1 cup (8-oz.) buffalo sauce to the Crockpot. Toss to combine. Cook on low for 6-8 hours or high for 3-4 hours. Remove the chicken breasts from the Crockpot and use two forks to shred the meat. Discard the remaining liquid from the Crockpot then add the meat back and toss with the remaining 1/2 cup (4-oz.) of buffalo sauce. '
-                },
-                {
-                    name: 'Pulled Buffalo Chicken',
-                    calories: 1290,
-                    duration_hour: 0,
-                    duration_minute: 30,
-                    Directions: 'Add the chicken and 1 cup (8-oz.) buffalo sauce to the Crockpot. Toss to combine. Cook on low for 6-8 hours or high for 3-4 hours. Remove the chicken breasts from the Crockpot and use two forks to shred the meat. Discard the remaining liquid from the Crockpot then add the meat back and toss with the remaining 1/2 cup (4-oz.) of buffalo sauce. '
-                }
-            ],
-    
-
+            meals: [],
             newMeal:{
                 name: "",
                 calories: null,
@@ -113,15 +86,21 @@ components: {
         }
     },
     computed:{
+        ...mapState(useMealStore, ['getAllMeals']),
+
         totalNumberOfMeals(){
             if(this.meals && this.meals.length > 0){
                 totalMeals = this.meals.length;
             }else{
                 return totalMeals;
             }
-        }
+        },
     },
+
     methods:{
+
+        ...mapActions(useMealStore,['addMeal','addToTotal']),
+
         formatDuration(hours, minutes){
             return `${hours}hr ${minutes}min`
         },
@@ -132,11 +111,12 @@ components: {
                 duration_hour: this.newMeal.duration_hour,
                 duration_minute: this.newMeal.duration_minute,
                 Directions: this.newMeal.Directions} 
-            
-            this.meals.push(newMeal);
-            this.addMealToStore(newMeal);
-        }
+            this.addMeal(newMeal);
+            }
             this.resetForm();
+        },
+        addToTotalCalories(calories){
+            this.addToTotal(calories);
         },
         resetForm(){
             this.newMeal ={
@@ -148,12 +128,8 @@ components: {
             }
             this.formIncomplete = true;
         },
-
-        addMealToStore(meal) {
-            const mealStore = useMealStore();
-            mealStore.addMeal(meal);
-        }
     },
+
     watch: {
         newMeal: {
             deep: true,
