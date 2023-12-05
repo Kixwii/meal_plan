@@ -3,6 +3,7 @@
         <h1> Your Meal List </h1>
     <div class="meal-card" v-for="meal in getAllMeals" :key="meal">
         <MealComponent 
+        :id="meal.id"
         :name="meal.name" 
         :calories="meal.calories" 
         :duration_hour="meal.duration_hour" 
@@ -62,7 +63,7 @@
 
 <script>
 
-import MealComponent from '../components/icons/MealComponent.vue';
+import MealComponent from '../components/MealComponent.vue';
 import { useMealStore } from '../stores/mealStore';
 import { mapActions, mapState} from 'pinia';
 

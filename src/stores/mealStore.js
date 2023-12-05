@@ -10,6 +10,7 @@ export const useMealStore = defineStore('mealStore', {
     }),
     getters: {
         totalCalories(state){
+            // this.retrieveMeals()
             return state.meals.reduce((total, meal) => total + meal.calories, 0);
         },
         getAllMeals(state){
