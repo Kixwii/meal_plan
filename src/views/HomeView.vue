@@ -32,7 +32,7 @@ export default{
   },
   methods: {
     ...mapActions(useMealStore, ['addToTotal']),
-    
+
     addToTotalCalories(calories){
       this.totalCalories += calories;
     },
