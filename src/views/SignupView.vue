@@ -72,8 +72,8 @@ select {
 }
 
 button {
-  width: 80%;
-  background-color: #4caf50;
+  width: 50%;
+  background-color:red;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
