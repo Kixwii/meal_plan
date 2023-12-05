@@ -6,7 +6,7 @@
     </div>
   <div> 
     <label for="caloriesInput">Add them yourself!! : </label>
-    <input class type="number" id="caloriesInput" v-model="addedCalories"/>
+    <input class="calories-input" type="number" id="caloriesInput" v-model="addedCalories"/>
       <button @click="addCalories">Add Calories</button>
     </div>
   </div>
@@ -59,6 +59,7 @@ export default{
   width: 150px;
   border-radius: 15px;
   display: flex;
+  flex-direction: row;
   justify-items: center;
   align-items: center;
 }
@@ -67,7 +68,16 @@ export default{
   font-weight: bold;
   justify-content: center;
   align-items: center;
+  transform: translateX(50%);
   margin: 0;
   text-align: center;
+}
+.calories-input{
+  border: none;
+  border-radius: 10px;
+  color: black;
+  background-color: lightgrey;
+  height: 20px;
+  margin: 10px;
 }
 </style>
