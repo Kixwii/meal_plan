@@ -1,6 +1,5 @@
 <template>
     <div class="center">
-        <img alt="Swipestore logo" src="../assets/swipestoreLogo.png" height="150" width="150" />
         <form @submit.prevent="login">
             <h2>Login</h2>
             <input type="email" placeholder="Email" required v-model="email" />
@@ -33,7 +32,7 @@ export default {
         login() {
             signInWithEmailAndPassword(auth, this.email, this.password).then(() => {
                 this.$emit("loggedIn", true);
-                this.$router.push({ name: "store" });
+                this.$router.push({ name: "home" });
             });
         },
     },

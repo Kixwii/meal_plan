@@ -1,23 +1,12 @@
 <template>
   <div class="center">
-    <img
-      alt="Swipestore logo"
-      src="../assets/swipestoreLogo.png"
-      height="150"
-      width="150"
-    />
     <form @submit.prevent="signup">
       <h2>Sign Up</h2>
       <input type="text" placeholder="Username" required v-model="username" />
       <h2></h2>
       <input type="email" placeholder="Email" required v-model="email" />
       <h2></h2>
-      <input
-        type="Password"
-        placeholder="Password"
-        required
-        v-model="password"
-      />
+      <input type="Password" placeholder="Password" required v-model="password" />
       <h2></h2>
       <button>Sign up</button>
     </form>
@@ -51,8 +40,8 @@ export default {
           }).then(() => {
             console.log("Display: ", auth.currentUser.displayName);
             this.$emit("loggedIn", true);
-            this.$router.push({name:'store'});
-            
+            this.$router.push({ name: 'home' });
+
           });
         }
       );
@@ -70,6 +59,7 @@ export default {
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
+
 input,
 select {
   width: 100%;
