@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import {onSnapshot, collection} from 'firebase/firestore'
+import {onSnapshot, collection, addDoc} from 'firebase/firestore'
 import db from '../Firebase/init.js'
 
 
@@ -17,8 +17,14 @@ export const useMealStore = defineStore('mealStore', {
         }
     },
     actions: {
-        addMeal(meal){
-            this.meals.push(meal);
+        addMeal(meal) {
+            addDoc(collection(db, 'meals'), {
+                name:meal.name,
+                calories:meal.calories,
+                duration_hour:meal.duration_hour,
+                duration_minute:meal.duration_minute,
+                directions:meal.directions,
+            })
         },
         resetMeals(){
             this.meals = [];
@@ -42,7 +48,6 @@ export const useMealStore = defineStore('mealStore', {
                   mealsArr.push(meal)
                 })
                 this.meals = mealsArr
-                console.log(mealsArr)
             })
         }
     },
