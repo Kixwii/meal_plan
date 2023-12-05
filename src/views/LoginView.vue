@@ -41,6 +41,7 @@ export default {
   
 <style scoped>
 .center {
+    font-family:'Inconsolata', monospace;
     margin: 0;
     top: 50%;
     left: 50%;
@@ -61,13 +62,15 @@ select {
 }
 
 button {
-    width: 80%;
-    background-color: #4caf50;
+    width: 50%;
+    transform: translateX(50%);
+    background-color:red;
     color: white;
     padding: 14px 20px;
+    font-weight: bold;
     margin: 8px 0;
     border: none;
-    border-radius: 10px;
+    border-radius: 21px;
     cursor: pointer;
 }
 

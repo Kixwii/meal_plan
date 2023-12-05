@@ -86,14 +86,10 @@ components: {
         }
     },
     computed:{
-        ...mapState(useMealStore, ['getAllMeals']),
+        ...mapState(useMealStore, ['getAllMeals', 'getNumberOfMeals']),
 
         totalNumberOfMeals(){
-            if(this.meals && this.meals.length > 0){
-                totalMeals = this.meals.length;
-            }else{
-                return totalMeals;
-            }
+            return this.getNumberOfMeals();
         },
     },
 

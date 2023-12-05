@@ -20,6 +20,9 @@ export const useMealStore = defineStore('mealStore', {
         },
         getAllMeals(state){
             return state.meals;
+        },
+        getNumberOfMeals(state){
+            return state.meals.length;
         }
     },
     actions: {

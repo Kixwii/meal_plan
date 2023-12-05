@@ -55,6 +55,7 @@ export default {
   margin: 0;
   top: 50%;
   left: 50%;
+  font-family:'Inconsolata', monospace;
   position: absolute;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
@@ -73,12 +74,14 @@ select {
 
 button {
   width: 50%;
+  transform: translateX(50%);
   background-color:red;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
   border: none;
-  border-radius: 10px;
+  font-weight: bold;
+  border-radius: 20px;
   cursor: pointer;
 }
 
