@@ -16,7 +16,7 @@
 <script>
 
 import { useMealStore } from '../stores/mealStore';
-import { mapState } from 'pinia';
+import { mapState , mapActions} from 'pinia';
 export default{
   data(){
     return{
@@ -24,13 +24,15 @@ export default{
     }
   },
   computed: {
-    ...mapState(useMealStore, ['totalCalories', 'addToTotal']),
+    ...mapState(useMealStore, ['totalCalories']),
     // totalCaloriesDisplayed(){
     //   const mealStore = useMealStore();
     //   return mealStore.totalCalories;
     // },
   },
   methods: {
+    ...mapActions(useMealStore, ['addToTotal']),
+    
     addToTotalCalories(calories){
       this.totalCalories += calories;
     },
@@ -40,7 +42,7 @@ export default{
       if(!isNaN(parsedCalories)) {
         //Add the new calories to the store
         this.addToTotal(parsedCalories);
-        this.addedCalories = 0; // Resetting the input after adding the calories
+        this.addedCalories =0;// Resetting the input after adding the calories
       }
     }
   }
