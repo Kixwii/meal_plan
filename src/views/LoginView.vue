@@ -40,6 +40,7 @@ export default {
 </script>
   
 <style scoped>
+
 .center {
     font-family:'Inconsolata', monospace;
     margin: 0;
