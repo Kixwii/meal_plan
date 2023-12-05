@@ -1,9 +1,18 @@
-<script setup>
+<script>
 import { RouterLink, RouterView } from 'vue-router'
+import LoginView from './views/LoginView.vue';
+export default{
+  components:{
+    LoginView,
+    RouterLink,
+    RouterView
+  }
+}
 </script>
 
 <template>
-  <header>
+  <div @loggedIn = "logIn" v-if="isLoggedIn">
+  <header >
     <RouterLink to="/" class="title-link">
         <h1 class="app-title">MEAL_PLAN</h1>
       </RouterLink>
@@ -16,7 +25,12 @@ import { RouterLink, RouterView } from 'vue-router'
     </div>
   </header>
 
+
   <RouterView />
+</div>
+<div v-else>
+<LoginView/>
+</div>
 </template>
 
 
