@@ -121,6 +121,13 @@ nav a:hover{
 }
 button{
   margin: 0;
+  border: none;
+  background-color: #ffff;
+  color: red;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  
 }
 
 </style>

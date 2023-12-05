@@ -4,7 +4,7 @@
     <div class="calories-card"> 
       <h1> {{ totalCalories }}</h1>
     </div>
-  <div> 
+    <div> 
     <label for="caloriesInput">Add them yourself!! : </label>
     <input class="calories-input" type="number" id="caloriesInput" v-model="addedCalories"/>
       <button @click="addCalories">Add Calories</button>
@@ -81,5 +81,13 @@ export default{
   background-color: lightgrey;
   height: 20px;
   margin: 10px;
+}
+.home{
+  /* background-image: url('../assets/6405337.webp'); */
+  /* min-height: 100vh;
+  min-width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center; */
 }
 </style>
