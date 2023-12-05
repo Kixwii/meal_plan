@@ -1,0 +1,2 @@
+# Ignore compiled files and build directories
+node_modules/

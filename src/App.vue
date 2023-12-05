@@ -1,22 +1,45 @@
-<script setup>
+<script>
 import { RouterLink, RouterView } from 'vue-router'
+import LoginView from './views/LoginView.vue';
+export default{
+  components:{
+    LoginView,
+    RouterLink,
+    RouterView
+  },
+  data(){
+    return{
+      isLoggedIn: false
+    }
+  },
+  methods:{
+    logIn(showHeader){
+      if(showHeader){
+        this.isLoggedIn = true
+      }
+      else{
+        this.isLoggedIn = false
+      }
+    }
+  }
+}
 </script>
 
 <template>
-  <header>
-    <RouterLink to="/" class="title-link">
+  <header  v-if="isLoggedIn">
+    <RouterLink to="/home" class="title-link">
         <h1 class="app-title">MEAL_PLAN</h1>
       </RouterLink>
     <div class="wrapper">
       <nav>
-        <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/home">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
         <RouterLink to="/meal-list">Meal-List</RouterLink>
       </nav>
     </div>
   </header>
 
-  <RouterView />
+  <RouterView @loggedIn = "logIn"/>
 </template>
 
 
