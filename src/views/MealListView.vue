@@ -7,7 +7,7 @@
         :calories="meal.calories" 
         :duration_hour="meal.duration_hour" 
         :duration_minute="meal.duration_minute" 
-        :Directions="meal.Directions"
+        :directions="meal.directions"
         @addCalories="addToTotalCalories">
 
             <template #mealName>
@@ -27,7 +27,7 @@
             </template>
             <template #mealDirections>
                 <div class="meal-directions">
-                    <p>{{ meal.Directions }}</p>
+                    <p>{{ meal.directions }}</p>
                 </div>
             </template>
         </MealComponent>
@@ -42,14 +42,14 @@
             <input type="number" id="mealCalories" v-model.number="newMeal.calories" >
 
 
-            <label for="mealPreptimeHour">Duration (Hours):</label>
+            <label for="mealPrepTimeHour">Duration (Hours):</label>
             <input type="number" id="mealPrepTimeHour" v-model.number="newMeal.duration_hour" >
 
-            <label for="mealPrpTimeMinutes">Duration( Minutes ):</label>
+            <label for="mealPrepTimeMinutes">Duration( Minutes ):</label>
             <input type="number" id="mealPrepTimeMinutes" v-model.number="newMeal.duration_minute">
 
             <label for="mealDirections">Prep-Directions: </label>
-            <textarea id="mealDirections" v-model="newMeal.Directions"></textarea>
+            <textarea id="mealDirections" v-model="newMeal.directions"></textarea>
 
             <button @click="addNewMeal" :disabled="formIncomplete" type="submit">Add New Meal</button>
 
@@ -79,7 +79,7 @@ components: {
                 calories: null,
                 duration_hour: null,
                 duration_minute: null,
-                Directions: ""
+                directions: ""
             },
             formIncomplete: true,
             totalMeals: 0
@@ -96,10 +96,13 @@ components: {
             }
         },
     },
+    beforeMount(){
+        this.retrieveMeals()
+    },
 
     methods:{
 
-        ...mapActions(useMealStore,['addMeal','addToTotal']),
+        ...mapActions(useMealStore,['addMeal','addToTotal','retrieveMeals']),
 
         formatDuration(hours, minutes){
             return `${hours}hr ${minutes}min`
@@ -110,7 +113,7 @@ components: {
                 calories: this.newMeal.calories,
                 duration_hour: this.newMeal.duration_hour,
                 duration_minute: this.newMeal.duration_minute,
-                Directions: this.newMeal.Directions} 
+                directions: this.newMeal.directions} 
             this.addMeal(newMeal);
             }
             this.resetForm();
@@ -124,7 +127,7 @@ components: {
                 calories:'',
                 duration_hour: null,
                 duration_minute: null,
-                Directions: ''
+                directions: ''
             }
             this.formIncomplete = true;
         },
