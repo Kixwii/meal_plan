@@ -73,7 +73,6 @@ components: {
     },
     data() {
         return{
-            meals: [],
             newMeal:{
                 name: "",
                 calories: null,
