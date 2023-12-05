@@ -28,7 +28,7 @@ export default{
       signOut(auth).then(() =>{
         console.log('Logging out');
         this.$emit('isLoggedIn', false);
-        this.router.push({name:'login'});
+        this.$router.push({name:'login'});
       });
     }
   }
@@ -47,9 +47,7 @@ export default{
         <RouterLink to="/meal-list">Meal-List</RouterLink>
       </nav>
     </div>
-    <div> 
       <button @click="signOut">log out</button>
-    </div>
   </header>
 
   <RouterView @loggedIn = "logIn"/>
@@ -120,6 +118,9 @@ nav a:hover{
   font-size: 24px;
   font-weight: bold;
   color: red;
+}
+button{
+  margin: 0;
 }
 
 </style>
