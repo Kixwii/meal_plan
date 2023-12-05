@@ -152,6 +152,12 @@ components: {
 
 
 <style>
+/* .mealListView{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+} */
 .meal-name{
     font-family: 'B612 Mono', monospace;
 }
