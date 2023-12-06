@@ -2,12 +2,12 @@
   <div class="home">
     <h1>This is the Home Page</h1>
     <div class="calories-card"> 
-      <h1> {{ totalCalories }}</h1>
+      <h1> {{ totalCalories + userAddedCalories }}</h1>
     </div>
     <div> 
-    <label for="caloriesInput">Add them yourself!! : </label>
-    <input class="calories-input" type="number" id="caloriesInput" v-model="addedCalories"/>
-      <button @click="addCalories">Add Calories</button>
+    <label for="caloriesInput">Add them yourself!!:</label>
+    <input class="calories-input" type="number" id="caloriesInput" v-model="userAddedCalories"/>
+      <button @click="addToTotalCalories">Add Calories</button>
     </div>
   </div>
   
@@ -20,7 +20,8 @@ import { mapState , mapActions} from 'pinia';
 export default{
   data(){
     return{
-      addedCalories: 0,
+      additionalCalories:0,
+      userAddedCalories: 0,
     }
   },
   computed: {
@@ -32,16 +33,17 @@ export default{
   },
   methods: {
     ...mapActions(useMealStore, ['addToTotal']),
-    addToTotalCalories(calories){
-      this.totalCalories += calories;
+    
+    addToTotalCalories(){
+      this.addCalories();
     },
 
     addCalories(){
-      const parsedCalories = parseInt(this.addedCalories);
+      const parsedCalories = parseInt(this.userAddedCalories);
       if(!isNaN(parsedCalories)) {
         //Add the new calories to the store
-        this.addToTotal(parsedCalories);
-        this.addedCalories =0;// Resetting the input after adding the calories
+        this.additionalCalories += parsedCalories;
+        this.userAddedCalories = 0;// Resetting the input after adding the calories
       }
     }
   }

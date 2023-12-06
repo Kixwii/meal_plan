@@ -57,7 +57,7 @@
                 <h5 v-if="formIncomplete">Missing Info!</h5>
             </form>
         </div>
-    <h4>Number of Meals: {{ totalNumberOfMeals }}</h4>
+    <h4>Number of Meals: {{ getNumberOfMeals }}</h4>
     </div>
 </template>
 
@@ -86,14 +86,7 @@ components: {
     },
     computed:{
         ...mapState(useMealStore, ['getAllMeals', 'getNumberOfMeals']),
-
-        totalNumberOfMeals(){
-            if(this.meals && this.meals.length > 0){
-                totalMeals = this.meals.length;
-            }else{
-                return totalMeals;
-            }
-        },
+   
     },
     beforeMount(){
         this.retrieveMeals()
