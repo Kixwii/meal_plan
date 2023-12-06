@@ -42,7 +42,7 @@ export default{
       const parsedCalories = parseInt(this.userAddedCalories);
       if(!isNaN(parsedCalories)) {
         //Add the new calories to the store
-        this.additionalCalories += parsedCalories;
+        this.addToTotal(parsedCalories);
         this.userAddedCalories = 0;// Resetting the input after adding the calories
       }
     }
