@@ -108,6 +108,7 @@ components: {
                 directions: this.newMeal.directions} 
             this.addMeal(newMeal);
             }
+            console.log('Meal created');
             this.resetForm();
         },
         addToTotalCalories(calories){
