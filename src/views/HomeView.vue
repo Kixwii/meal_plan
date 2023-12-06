@@ -83,11 +83,14 @@ export default{
   margin: 10px;
 }
 .home{
-  /* background-image: url('../assets/6405337.webp'); */
-  /* min-height: 100vh;
-  min-width: 100vw;
+  background-image: url('../assets/7414518.webp');
+  background-repeat: no-repeat;
+  background-size:contain;
+  min-height: 100vh;
+  min-width: 70vw; 
   display: flex;
+  flex-direction: column;
+  align-items:center;
   justify-content: center;
-  align-items: center; */
 }
 </style>
