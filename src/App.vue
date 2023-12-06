@@ -122,7 +122,8 @@ nav a:hover{
 button{
   margin: 0;
   border: none;
-  background-color: #ffff;
+  border-radius: 10px;
+  background-color: lightgrey;
   color: red;
   top: 0;
   left: 50%;
